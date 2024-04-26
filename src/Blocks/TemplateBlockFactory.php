@@ -12,6 +12,9 @@ class TemplateBlockFactory
 {
     public function createHeaderTemplateBlock(): TemplateBlock
     {
-        $headerData = (new NavigationDataProvider(new DataProviderConfigurationFactory()))->provide('MAIN_NAVIGATION');
+        $headerData =
+            (new NavigationDataProvider(new DataProviderConfigurationFactory()))->provide('MAIN_NAVIGATION');
+
+        return new TemplateBlock('layout/header.html.twig', 'header', ['headerData' => $headerData]);
     }
 }
