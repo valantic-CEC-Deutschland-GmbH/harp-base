@@ -47,6 +47,6 @@ class NavigationDataProvider implements DataProviderInterface
      */
     private function extractTopNavigation(mixed $navigationData): array
     {
-        return $navigationData['data'][0]['attributes'];
+        return $navigationData['data']['attributes'];
     }
 }
