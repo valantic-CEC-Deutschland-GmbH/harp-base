@@ -19,9 +19,7 @@ RUN \
 
 # Install PHP Extensions
 RUN \
-  docker-php-ext-install opcache \
-  && docker-php-ext-enable opcache \
-  && docker-php-ext-install sockets \
+  docker-php-ext-install sockets \
   && docker-php-ext-install zip
 
 # Copy RoadRunner
