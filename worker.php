@@ -10,8 +10,10 @@ $psr7Worker = new Spiral\RoadRunner\Http\PSR7Worker($worker, $psr17Factory, $psr
 
 while ($req = $psr7Worker->waitRequest()) {
     try {
+        $res = (new \RequestHandlers\HomePageHandler())->handleRequest($req);
         $res = $psr17Factory->createResponse();
-        $res->getBody()->write('Hello world from RoadRunner!');
+
+
         $psr7Worker->respond($res);
     } catch (Throwable $e) {
         $psr7Worker->getWorker()->error((string)$e);
