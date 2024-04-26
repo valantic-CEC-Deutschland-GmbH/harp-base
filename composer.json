@@ -13,7 +13,8 @@
     "require": {
         "php": "^7.3 || ^8.0",
         "nyholm/psr7": "^1.4",
-        "spiral/roadrunner": "2024.1"
+        "spiral/roadrunner": "2024.1",
+        "symfony/twig-bundle": "^6.4"
     },
     "config": {
         "preferred-install": "dist",
