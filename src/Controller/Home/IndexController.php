@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Home;
 
+use App\Blocks\TemplateBlockFactory;
 use Htmxfony\Controller\HtmxControllerTrait;
 use Htmxfony\Request\HtmxRequest;
 use Htmxfony\Response\HtmxResponse;
@@ -12,6 +13,12 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class IndexController extends AbstractController
 {
+    private TemplateBlockFactory $templateBlockFactory;
+
+    public function __construct()
+    {
+        $this->templateBlockFactory = new TemplateBlockFactory();
+    }
     use HtmxControllerTrait;
     #[Route('/', name: 'app_home_index')]
     public function index(HtmxRequest $request): HtmxResponse
@@ -22,11 +29,7 @@ class IndexController extends AbstractController
         $navigationData = file_get_contents($path);
 
         return $this->htmxRenderBlock(
-            new TemplateBlock(
-                'HOME/header.html.twig',
-                'header',
-                [],
-            ),
+            $this->templateBlockFactory->createHeaderTemplateBlock(),
             new TemplateBlock(
                 'HOME/navigation.html.twig',
                 'navigation',
