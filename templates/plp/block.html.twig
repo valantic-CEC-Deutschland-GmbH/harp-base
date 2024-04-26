@@ -1,0 +1,7 @@
+{% block plp1 %}
+	<div class="grid grid-cols-4">
+		{% for product in plpData.abstractProducts %}
+			{% include "plp/_product-tile.html.twig" with { product } %}
+		{% endfor %}
+	</div>
+{% endblock %}
