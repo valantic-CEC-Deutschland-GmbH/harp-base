@@ -5,11 +5,15 @@ declare(strict_types = 1);
 namespace App\DataProvider;
 
 use GuzzleHttp\Client;
+use Psr\Cache\CacheItemPoolInterface;
 
 class ProductListDataProvider implements DataProviderInterface
 {
-    public function __construct(private DataProviderConfigurationFactory $factory)
-    {}
+    public function __construct(
+        private DataProviderConfigurationFactory $factory,
+        private ?CacheItemPoolInterface $cacheItemPool = null
+    ){
+    }
 
     /**
      * @param string|int $id
@@ -18,6 +22,13 @@ class ProductListDataProvider implements DataProviderInterface
      */
     public function provide(string|int $id): array
     {
+        if ($this->cacheItemPool !== null) {
+            $cacheItem = $this->cacheItemPool->getItem('productList' . $id);
+            if ($cacheItem->isHit()) {
+                return $cacheItem->get();
+            }
+        }
+
         $providerConfig = $this->factory->createProductListDataProvider();
 
         $endpoint = $providerConfig->getEndpoint();
@@ -37,6 +48,13 @@ class ProductListDataProvider implements DataProviderInterface
         $plpData = json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
 
         $plpData = $this->extractAbstractProducts($plpData);
+
+        if ($this->cacheItemPool !== null) {
+            $this->cacheItemPool->save(
+                $this->cacheItemPool->getItem('productList' . $id)
+                    ->set($plpData)
+            );
+        }
 
         return $plpData;
     }
