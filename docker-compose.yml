@@ -1,16 +1,16 @@
-version: '2'
-
 services:
   roadrunner:
     build:
-      context: ./containers/roadrunner
       args:
-        RR_VERSION: ${RR_VERSION}
         PHP_IMAGE_VERSION: ${PHP_IMAGE_VERSION}
-    ports:
-      - 8080:8080
+        RR_VERSION: ${RR_VERSION}
+      context: ./containers/roadrunner
+      # target: production
+      target: development
     environment:
       RR_VERSION: ${RR_VERSION}
+    ports:
+      - '8080:8080/tcp'
     working_dir: /app
     volumes:
       - ./:/app

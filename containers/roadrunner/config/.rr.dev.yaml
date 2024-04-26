@@ -11,9 +11,9 @@ rpc:
 http:
   address: :8080
   pool:
-    num_workers: 4
-    max_jobs: 64
-    debug: false
+    num_workers: 1
+    max_jobs: 1
+    debug: true
   middleware: [ "static", "gzip" ]
   uploads:
     forbid: [ ".php", ".exe", ".bat" ]
