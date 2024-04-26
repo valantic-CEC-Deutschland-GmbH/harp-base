@@ -2,10 +2,13 @@
 
 declare(strict_types = 1);
 
-use App\DataProvider\DataProviderInterface;
+namespace App\DataProvider;
+
 
 class ProductListDataProvider implements DataProviderInterface
 {
+    public function __construct(private DataProviderConfigurationFactory $factory)
+    {}
 
     public function provide(int $id): string
     {
