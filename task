@@ -21,7 +21,7 @@ function init {
   docker-compose build
 
   echo "Install PHP dependencies..."
-  docker-compose run roadrunner sh -c 'composer require spiral/roadrunner:${RR_VERSION}'
+  docker-compose run roadrunner sh -c 'composer install'
 
   echo "Initialization completed!"
 }
