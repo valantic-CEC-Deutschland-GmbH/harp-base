@@ -1,9 +1,18 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Hello world!{% endblock %}
+{% set bodyClass = 'flex flex-col min-h-screen' %}
+
+{% block title %}Hello world!
+{% endblock %}
 
 {% block body %}
-<h1>
-    Hello world!
-</h1>
+	<header>
+		{%  include 'layout/header/header.html.twig' %}
+	</header>
+	<main class='grow'>
+		wellcome
+	</main>
+	<footer>
+		{% include 'layout/footer/footer.html.twig' %}
+	</footer>
 {% endblock %}

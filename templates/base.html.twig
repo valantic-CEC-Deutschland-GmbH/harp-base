@@ -7,9 +7,10 @@
         {% block stylesheets %}
         {% endblock %}
         {% block javascripts %}
+            <script src="https://cdn.tailwindcss.com"></script>
         {% endblock %}
     </head>
-    <body>
+    <body {% if bodyClass is defined %}class="{{ bodyClass }}"{% endif %}>
         {% block body %}{% endblock %}
     </body>
 </html>
