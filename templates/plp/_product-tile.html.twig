@@ -1,0 +1,17 @@
+{% if product %}
+	{% set name = product.abstractName %}
+	{% set price = product.prices[0].DEFAULT %}
+	{% set imgSmall = product.images[0].externalUrlSmall %}
+	{% set imgBig = product.images[0].externalUrlLarge %}
+	{% set link = '#' %}
+	<div class="p-2 hover:bg-slate-100">
+		<a class="flex" href="{{ link }}">
+			<img class="w-full h-48 object-contain" src="{{ imgSmall }}" alt="{{ name }}">
+		</a>
+
+		<a class="flex flex-col" href="{{ link }}">
+			<span>{{ name }}</span>
+			<span>€{{ price }}</span>
+		</a>
+	</div>
+{% endif %}

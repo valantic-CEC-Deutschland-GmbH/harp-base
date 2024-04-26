@@ -1,4 +1,3 @@
-
 {% set nav = {
   "name": "Top Navigation",
   "isActive": true,
@@ -425,14 +424,13 @@
 
 
 <div class="bg-slate-300 mb-8">
-	{% if nav %}
+	{% if nav is defined %}
 		<nav class="flex items-center gap-4 p-4 mx-auto">
-		{% for node in nav.nodes %}
-			{% if node.url %}
-				<a class="p-4 hover:bg-slate-400/50" href="{{ node.url }}">{{ node.title }}</a>
-			{% endif %}
-		{% endfor %}
+			{% for node in nav.nodes %}
+				{% if node.nodeType == 'category' and node.resourceId is defined %}
+					<a hx-get="/category/{{ node.resourceId }}" hx-push-url="true" hx-target="main" class="p-4 hover:bg-slate-400/50" href="/category/{{ node.resourceId }}">{{ node.title }}</a>
+				{% endif %}
+			{% endfor %}
 		</nav>
 	{% endif %}
 </div>
-
