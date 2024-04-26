@@ -6,14 +6,13 @@ namespace App\DataProvider;
 
 class DataProviderConfigurationFactory
 {
-
-    public function create()
-    {
-        return DataProviderConfiguration::init();
-    }
-
-    public function createProductListDataProvider(): DataProviderConfigurationInterface
+    public function createProductListDataProvider()
     {
         return DataProviderConfiguration::init('productList');
+    }
+
+    public function createNavigationDataProvider()
+    {
+        return DataProviderConfiguration::init('navigation');
     }
 }

@@ -4,23 +4,47 @@ declare(strict_types = 1);
 
 namespace App\DataProvider;
 
+use GuzzleHttp\Client;
 
 class ProductListDataProvider implements DataProviderInterface
 {
     public function __construct(private DataProviderConfigurationFactory $factory)
     {}
 
-    public function provide(int $id): string
+    public function provide(int $id): array
     {
         $providerConfig = $this->factory->createProductListDataProvider();
 
         $endpoint = $providerConfig->getEndpoint();
 
-        $transformer = $providerConfig->getDataTransformer();
+        $client = new Client([
+            'headers' => [
+                'Accept-Language' => 'en-us',
+                'Accept' => 'application/json',
+                'Accept-Encoding' => 'gzip, deflate, br',
+                'Connection' => 'keep-alive',
+                'Cache-Control' => 'no-cache',
+            ],
+        ]);
 
-        $inputParams = $transformer
+        $response = $client->get($endpoint, ['query' => ['category' => $id]]);
 
-        (new GuzzleClient())->sendRequest(Request ::setConfig($this->factory->create());
-        return "";//json_encode(['id' => $id], JSON_THROW_ON_ERROR);
+        $plpData = json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
+
+        $plpData = $this->extractAbstractProducts($plpData);
+
+        return $plpData;
+    }
+
+    /**
+     * @param array $plpData
+     *
+     * @return array
+     */
+    private function extractAbstractProducts(array $plpData): array
+    {
+        return [
+            'abstractProducts' => $plpData['data'][0]['attributes']['abstractProducts'],
+        ];
     }
 }

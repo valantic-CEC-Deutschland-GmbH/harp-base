@@ -10,7 +10,9 @@
 		{%  include 'layout/header/header.html.twig' %}
 	</header>
 	<main class='grow'>
-		wellcome
+		{% block main %}
+			wellcome
+		{% endblock %}
 	</main>
 	<footer>
 		{% include 'layout/footer/footer.html.twig' %}
