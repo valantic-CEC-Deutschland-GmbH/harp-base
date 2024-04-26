@@ -9,6 +9,7 @@ use Htmxfony\Controller\HtmxControllerTrait;
 use Htmxfony\Response\HtmxResponse;
 use Htmxfony\Request\HtmxRequest;
 use Htmxfony\Template\TemplateBlock;
+use Psr\Cache\CacheItemPoolInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Attribute\Route;
@@ -17,7 +18,7 @@ class IndexController extends AbstractController
 {
     private TemplateBlockFactory $templateBlockFactory;
 
-    public function __construct()
+    public function __construct(private CacheItemPoolInterface $cacheItemPool)
     {
         $this->templateBlockFactory = new TemplateBlockFactory();
     }
@@ -26,12 +27,11 @@ class IndexController extends AbstractController
     public function index(HtmxRequest $request): HtmxResponse|Response
     {
         $path = __DIR__ . '/../../../example-data/navigation/navigation.json';
-        var_dump($path);
 
         $navigationData = file_get_contents($path);
 
         return $this->htmxRenderBlock(
-            $this->templateBlockFactory->createHeaderTemplateBlock(),
+            $this->templateBlockFactory->createHeaderTemplateBlock($this->cacheItemPool),
             new TemplateBlock(
                 'HOME/navigation.html.twig',
                 'navigation',

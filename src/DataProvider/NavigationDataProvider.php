@@ -5,10 +5,17 @@ declare(strict_types = 1);
 namespace App\DataProvider;
 
 use GuzzleHttp\Client;
+use Psr\Cache\CacheItemPoolInterface;
 
 class NavigationDataProvider implements DataProviderInterface
 {
-    public function __construct(private DataProviderConfigurationFactory $factory)
+    /**
+     * @param \App\DataProvider\DataProviderConfigurationFactory $factory
+     * @param \Psr\Cache\CacheItemPoolInterface|null $cacheItemPool
+     */
+    public function __construct(
+        private DataProviderConfigurationFactory $factory,
+        private ?CacheItemPoolInterface $cacheItemPool)
     {
     }
 
@@ -17,7 +24,14 @@ class NavigationDataProvider implements DataProviderInterface
      */
     public function provide(string|int $id): array
     {
-        $navigationProviderConfig = $this->factory->createNavigationDataProvider();
+        if ($this->cacheItemPool !== null) {
+            $cacheItem = $this->cacheItemPool->getItem('navigation' . $id);
+
+            if ($cacheItem->isHit()) {
+                return $cacheItem->get();
+            }
+        }
+        $navigationProviderConfig = $this->factory->createNavigationDataProviderConfiguration();
 
         $endpoint = $navigationProviderConfig->getEndpoint();
 
@@ -36,6 +50,13 @@ class NavigationDataProvider implements DataProviderInterface
         $navigationData = json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
 
         $navigationData = $this->extractTopNavigation($navigationData);
+
+        if ($this->cacheItemPool !== null) {
+            $this->cacheItemPool->save(
+                $this->cacheItemPool->getItem('navigation' . $id)
+                    ->set($navigationData)
+            );
+        }
 
         return $navigationData;
     }

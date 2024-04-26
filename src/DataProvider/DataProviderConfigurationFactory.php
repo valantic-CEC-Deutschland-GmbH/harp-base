@@ -11,7 +11,7 @@ class DataProviderConfigurationFactory
         return DataProviderConfiguration::init('productList');
     }
 
-    public function createNavigationDataProvider()
+    public function createNavigationDataProviderConfiguration()
     {
         return DataProviderConfiguration::init('navigation');
     }
