@@ -15,7 +15,7 @@ class NavigationDataProvider implements DataProviderInterface
     /**
      * @inheritDoc
      */
-    public function provide(int $id): array
+    public function provide(string|int $id): array
     {
         $navigationProviderConfig = $this->factory->createNavigationDataProvider();
 
