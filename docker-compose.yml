@@ -1,4 +1,11 @@
 services:
+  redis:
+    image: 'redis:${REDIS_VERSION}'
+    ports:
+      - '6379:6379/tcp'
+    restart: unless-stopped
+    volumes:
+      - 'redis-data:/data'
   roadrunner:
     build:
       args:
@@ -13,6 +20,11 @@ services:
       - 'host.docker.internal:host-gateway'
     ports:
       - '8080:8080/tcp'
+    restart: unless-stopped
     working_dir: /app
     volumes:
       - ./:/app
+
+volumes:
+  redis-data:
+    driver: local

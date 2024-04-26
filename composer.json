@@ -20,6 +20,8 @@
         "nyholm/psr7": "^1.4",
         "phpdocumentor/reflection-docblock": "^5.4",
         "phpstan/phpdoc-parser": "^1.28",
+        "predis/predis": "^2.2",
+        "snc/redis-bundle": "^4.7",
         "symfony/console": "7.0.*",
         "symfony/dotenv": "7.0.*",
         "symfony/expression-language": "7.0.*",

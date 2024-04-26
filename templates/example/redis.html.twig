@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% set bodyClass = 'flex flex-col min-h-screen' %}
+
+{% block title %}Example - Redis{% endblock %}
+
+{% block body %}
+	<header>
+		{% include 'layout/header/header.html.twig' %}
+	</header>
+	<main class='grow'>
+		Example - Redis
+	</main>
+	<footer>
+		{% include 'layout/footer/footer.html.twig' %}
+	</footer>
+{% endblock %}
