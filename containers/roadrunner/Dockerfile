@@ -1,5 +1,5 @@
 ARG RR_VERSION
-ARG RR_IMAGE=spiralscout/roadrunner:${RR_VERSION}
+ARG RR_IMAGE=ghcr.io/roadrunner-server/roadrunner:${RR_VERSION}
 ARG PHP_IMAGE_VERSION
 ARG PHP_IMAGE=php:${PHP_IMAGE_VERSION}
 
@@ -7,9 +7,15 @@ FROM ${RR_IMAGE} as rr
 
 FROM ${PHP_IMAGE}
 
-RUN apk update && apk add --no-cache \
+RUN pecl install xdebug
+RUN docker-php-ext-enable xdebug
+
+RUN apt-get update && apt-get install -y \
   vim \
+  zlib1g-dev \
   libzip-dev \
+  libcurl4-openssl-dev \
+  libonig-dev \
   unzip \
   bash
 

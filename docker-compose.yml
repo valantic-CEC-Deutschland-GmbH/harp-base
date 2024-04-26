@@ -15,3 +15,4 @@ services:
     volumes:
       - ./:/app
       - ./containers/roadrunner/config/.rr.yaml:/etc/rr.yaml:ro
+      - ./xdebug/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
