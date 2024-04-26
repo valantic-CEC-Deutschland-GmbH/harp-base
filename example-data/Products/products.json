@@ -1,0 +1,280 @@
+{
+  "abstractProducts": [
+    {
+      "abstractSku": "073",
+      "price": 43458,
+      "abstractName": "Samsung Galaxy Note 3",
+      "prices": [
+        {
+          "priceTypeName": "DEFAULT",
+          "currency": {
+            "code": "EUR",
+            "symbol": "€",
+            "name": "Euro"
+          },
+          "grossAmount": 43458,
+          "DEFAULT": 43458
+        }
+      ],
+      "images": [
+        {
+          "externalUrlSmall": "https://images.icecat.biz/img/norm/medium/21927455-7956.jpg",
+          "externalUrlLarge": "https://images.icecat.biz/img/norm/high/21927455-7956.jpg"
+        }
+      ]
+    },
+    {
+      "abstractSku": "132",
+      "price": 40651,
+      "abstractName": "Acer Aspire Switch 10 E",
+      "prices": [
+        {
+          "priceTypeName": "DEFAULT",
+          "currency": {
+            "code": "EUR",
+            "symbol": "€",
+            "name": "Euro"
+          },
+          "grossAmount": 40651,
+          "DEFAULT": 40651
+        }
+      ],
+      "images": [
+        {
+          "externalUrlSmall": "https://images.icecat.biz/img/gallery_mediums/30619567_3161.jpg",
+          "externalUrlLarge": "https://images.icecat.biz/img/gallery/30619567_3161.jpg"
+        }
+      ]
+    },
+    {
+      "abstractSku": "133",
+      "price": 35435,
+      "abstractName": "Acer Aspire Switch 10 E",
+      "prices": [
+        {
+          "priceTypeName": "DEFAULT",
+          "currency": {
+            "code": "EUR",
+            "symbol": "€",
+            "name": "Euro"
+          },
+          "grossAmount": 35435,
+          "DEFAULT": 35435
+        }
+      ],
+      "images": [
+        {
+          "externalUrlSmall": "https://images.icecat.biz/img/gallery_mediums/31743669_0971.jpg",
+          "externalUrlLarge": "https://images.icecat.biz/img/gallery_raw/31743669_0971.png"
+        }
+      ]
+    },
+    {
+      "abstractSku": "146",
+      "price": 41837,
+      "abstractName": "DELL Inspiron 7359",
+      "prices": [
+        {
+          "priceTypeName": "DEFAULT",
+          "currency": {
+            "code": "EUR",
+            "symbol": "€",
+            "name": "Euro"
+          },
+          "grossAmount": 41837,
+          "DEFAULT": 41837
+        }
+      ],
+      "images": [
+        {
+          "externalUrlSmall": "https://images.icecat.biz/img/gallery_mediums/30706737_6122.jpg",
+          "externalUrlLarge": "https://images.icecat.biz/img/gallery/30706737_6122.jpg"
+        }
+      ]
+    },
+    {
+      "abstractSku": "148",
+      "price": 27975,
+      "abstractName": "Fujitsu LIFEBOOK U745",
+      "prices": [
+        {
+          "priceTypeName": "DEFAULT",
+          "currency": {
+            "code": "EUR",
+            "symbol": "€",
+            "name": "Euro"
+          },
+          "grossAmount": 27975,
+          "DEFAULT": 27975
+        }
+      ],
+      "images": [
+        {
+          "externalUrlSmall": "https://images.icecat.biz/img/gallery_mediums/img_25977678_medium_1483719096_7404_25230.jpg",
+          "externalUrlLarge": "https://images.icecat.biz/img/norm/high/25977678-2890.jpg"
+        }
+      ]
+    },
+    {
+      "abstractSku": "149",
+      "price": 2952,
+      "abstractName": "HP 200 250 G4",
+      "prices": [
+        {
+          "priceTypeName": "DEFAULT",
+          "currency": {
+            "code": "EUR",
+            "symbol": "€",
+            "name": "Euro"
+          },
+          "grossAmount": 2952,
+          "DEFAULT": 2952
+        }
+      ],
+      "images": [
+        {
+          "externalUrlSmall": "https://images.icecat.biz/img/gallery_lows/30283566_5113.jpg",
+          "externalUrlLarge": "https://images.icecat.biz/img/gallery/30283566_5113.jpg"
+        }
+      ]
+    },
+    {
+      "abstractSku": "150",
+      "price": 19700,
+      "abstractName": "HP Chromebook 11",
+      "prices": [
+        {
+          "priceTypeName": "DEFAULT",
+          "currency": {
+            "code": "EUR",
+            "symbol": "€",
+            "name": "Euro"
+          },
+          "grossAmount": 19700,
+          "DEFAULT": 19700
+        }
+      ],
+      "images": [
+        {
+          "externalUrlSmall": "https://images.icecat.biz/img/gallery_lows/21842562_8926594447.jpg",
+          "externalUrlLarge": "https://images.icecat.biz/img/gallery_lows/30692994_4933.jpg"
+        }
+      ]
+    },
+    {
+      "abstractSku": "151",
+      "price": 5448,
+      "abstractName": "HP Chromebook 11",
+      "prices": [
+        {
+          "priceTypeName": "DEFAULT",
+          "currency": {
+            "code": "EUR",
+            "symbol": "€",
+            "name": "Euro"
+          },
+          "grossAmount": 5448,
+          "DEFAULT": 5448
+        }
+      ],
+      "images": [
+        {
+          "externalUrlSmall": "https://images.icecat.biz/img/gallery_mediums/35801363_9654953832.jpg",
+          "externalUrlLarge": "https://images.icecat.biz/img/gallery_mediums/35801363_1897556788.jpg"
+        }
+      ]
+    },
+    {
+      "abstractSku": "153",
+      "price": 39353,
+      "abstractName": "Lenovo Essential G50-80",
+      "prices": [
+        {
+          "priceTypeName": "DEFAULT",
+          "currency": {
+            "code": "EUR",
+            "symbol": "€",
+            "name": "Euro"
+          },
+          "grossAmount": 39353,
+          "DEFAULT": 39353
+        }
+      ],
+      "images": [
+        {
+          "externalUrlSmall": "https://images.icecat.biz/img/norm/medium/26178487-7347.jpg",
+          "externalUrlLarge": "https://images.icecat.biz/img/norm/high/26178487-7347.jpg"
+        }
+      ]
+    },
+    {
+      "abstractSku": "154",
+      "price": 22240,
+      "abstractName": "Lenovo Yoga 500 14",
+      "prices": [
+        {
+          "priceTypeName": "DEFAULT",
+          "currency": {
+            "code": "EUR",
+            "symbol": "€",
+            "name": "Euro"
+          },
+          "grossAmount": 22240,
+          "DEFAULT": 22240
+        }
+      ],
+      "images": [
+        {
+          "externalUrlSmall": "https://images.icecat.biz/img/gallery_lows/31980499_9888.jpg",
+          "externalUrlLarge": "https://images.icecat.biz/img/gallery/31980499_9888.jpg"
+        }
+      ]
+    },
+    {
+      "abstractSku": "155",
+      "price": 8005,
+      "abstractName": "Lenovo IdeaPad Yoga 500",
+      "prices": [
+        {
+          "priceTypeName": "DEFAULT",
+          "currency": {
+            "code": "EUR",
+            "symbol": "€",
+            "name": "Euro"
+          },
+          "grossAmount": 8005,
+          "DEFAULT": 8005
+        }
+      ],
+      "images": [
+        {
+          "externalUrlSmall": "https://images.icecat.biz/img/gallery_mediums/32122450_8138.jpg",
+          "externalUrlLarge": "https://images.icecat.biz/img/gallery/32122450_8138.jpg"
+        }
+      ]
+    },
+    {
+      "abstractSku": "210",
+      "price": 100000,
+      "abstractName": "Sony Bundle",
+      "prices": [
+        {
+          "priceTypeName": "DEFAULT",
+          "currency": {
+            "code": "EUR",
+            "symbol": "€",
+            "name": "Euro"
+          },
+          "grossAmount": 100000,
+          "DEFAULT": 100000
+        }
+      ],
+      "images": [
+        {
+          "externalUrlSmall": "https://images.icecat.biz/img/norm/medium/23120327-Sony.jpg",
+          "externalUrlLarge": "https://images.icecat.biz/img/norm/high/23120327-Sony.jpg"
+        }
+      ]
+    }
+  ]
+}
