@@ -12,7 +12,7 @@ class DataProviderConfigurationFactory
         return DataProviderConfiguration::init();
     }
 
-    public function createProductListDataProvider(): DataProviderConfigurationInterface
+    public function createProductListDataProvider()
     {
         return DataProviderConfiguration::init('productList');
     }

@@ -9,7 +9,7 @@ server:
   relay: pipes
 
 http:
-  access_logs: true
+  access_logs: false
   address: :8080
   pool:
     num_workers: 1
