@@ -6,15 +6,19 @@
 {% endblock %}
 
 {% block body %}
-	<header>
-		{%  include 'layout/header/header.html.twig' %}
-	</header>
-	<main class='grow'>
-		{% block main %}
+	{% block header %}
+		<header>
+			{%  include 'layout/header/header.html.twig' %}
+		</header>
+	{% endblock %}
+	{% block main %}
+		<main class='grow'>
 			wellcome
-		{% endblock %}
-	</main>
-	<footer>
-		{% include 'layout/footer/footer.html.twig' %}
-	</footer>
+		</main>
+	{% endblock %}
+	{% block footer %}
+		<footer>
+			{% include 'layout/footer/footer.html.twig' %}
+		</footer>
+	{% endblock %}
 {% endblock %}

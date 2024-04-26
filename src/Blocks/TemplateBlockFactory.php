@@ -24,6 +24,6 @@ class TemplateBlockFactory
                 $cacheItemPool,
             ))->provide('MAIN_NAVIGATION');
 
-        return new TemplateBlock('layout/header.html.twig', 'header', ['headerData' => $headerData]);
+        return new TemplateBlock('layout/header/header.html.twig', 'header', ['headerData' => $headerData]);
     }
 }

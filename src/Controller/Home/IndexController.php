@@ -31,16 +31,18 @@ class IndexController extends AbstractController
         $navigationData = file_get_contents($path);
 
         return $this->htmxRenderBlock(
+            new TemplateBlock(
+                'home/index.html.twig',
+                'head'
+            ),
             $this->templateBlockFactory->createHeaderTemplateBlock($this->cacheItemPool),
             new TemplateBlock(
-                'HOME/navigation.html.twig',
-                'navigation',
-                [ 'navigationData' => json_decode($navigationData, true, 512, JSON_THROW_ON_ERROR) ],
+                'home/index.html.twig',
+                'main'
             ),
             new TemplateBlock(
-                'HOME/footer.html.twig',
-                'footer',
-                [],
+                'home/index.html.twig',
+                'footer'
             ),
         );
     }
