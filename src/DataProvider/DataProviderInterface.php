@@ -7,9 +7,9 @@ namespace App\DataProvider;
 interface DataProviderInterface
 {
     /**
-     * @param int $id
+     * @param string|int $id
      *
      * @return array
      */
-    public function provide(int $id): array;
+    public function provide(string|int $id): array;
 }
