@@ -9,7 +9,7 @@ interface DataProviderInterface
     /**
      * @param int $id
      *
-     * @return string
+     * @return array
      */
-    public function provide(int $id): string;
+    public function provide(int $id): array;
 }
