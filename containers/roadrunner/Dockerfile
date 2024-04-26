@@ -11,7 +11,7 @@ FROM ${PHP_IMAGE} AS base
 
 RUN \
   apt-get update \
-  && apt-get install --assume-yes --no-install-recommends libzip-dev bash
+  && apt-get install --assume-yes --no-install-recommends bash libzip-dev unzip
 
 RUN \
   docker-php-ext-install opcache \
