@@ -12,33 +12,32 @@ use Htmxfony\Request\HtmxRequest;
 use Htmxfony\Response\HtmxResponse;
 use Htmxfony\Template\TemplateBlock;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 class ProductListPageController extends AbstractController
 {
     use HtmxControllerTrait;
     #[Route('/category/{categoryId}', name: 'app_plp_index')]
-    public function index(int $categoryId, HtmxRequest $request): HtmxResponse
+    public function index(int $categoryId, HtmxRequest $request): HtmxResponse|Response
     {
-//        if ($request->isHtmxRequest()) {
-//            // do partial rendering
-//        }
-//        else {
-//            // render full page
-//        }
         $plpData = (new ProductListDataProvider(new DataProviderConfigurationFactory()))->provide($categoryId);
 
-//        $path = __DIR__ . '/../../../example-data/Products/products.json';
-//        var_dump($path);
-
-//        $plpData = file_get_contents($path);
-//
-
-        return $this->htmxRenderBlock(
-            new TemplateBlock(
-                'plp/block.html.twig',
-                'plp1',
-                [ 'plpData' => $plpData ],
-            ));
+        if ($request->isHtmxRequest()) {
+            // do partial rendering
+            return $this->htmxRenderBlock(
+                new TemplateBlock(
+                    'plp/index.html.twig',
+                    'main',
+                    ['plpData' => $plpData],
+                )
+            );
+        } else {
+            // render full page
+            return $this->render(
+                'plp/index.html.twig',
+                ['plpData' => $plpData],
+            );
+        }
     }
 }
