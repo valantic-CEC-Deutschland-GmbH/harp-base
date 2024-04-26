@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Controller\PLP;
 
-//use App\DataProvider\ProductListDataProvider;
 use App\DataProvider\DataProviderConfigurationFactory;
 use App\DataProvider\ProductListDataProvider;
 use Htmxfony\Controller\HtmxControllerTrait;

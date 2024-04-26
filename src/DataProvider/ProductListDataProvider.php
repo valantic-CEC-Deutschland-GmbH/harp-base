@@ -11,7 +11,12 @@ class ProductListDataProvider implements DataProviderInterface
     public function __construct(private DataProviderConfigurationFactory $factory)
     {}
 
-    public function provide(int $id): array
+    /**
+     * @param string|int $id
+     *
+     * @return array
+     */
+    public function provide(string|int $id): array
     {
         $providerConfig = $this->factory->createProductListDataProvider();
 
