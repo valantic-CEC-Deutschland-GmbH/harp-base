@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace RequestHandlers;
+namespace App\RequestHandlers;
 
 use Controllers\HomePageController;
 use Nyholm\Psr7\Factory\Psr17Factory;

@@ -9,10 +9,10 @@ services:
       target: development
     environment:
       RR_VERSION: ${RR_VERSION}
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
     ports:
       - '8080:8080/tcp'
     working_dir: /app
     volumes:
       - ./:/app
-      - ./containers/roadrunner/config/.rr.yaml:/etc/rr.yaml:ro
-      - ./xdebug/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini

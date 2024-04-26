@@ -3,12 +3,11 @@ version: "3"
 server:
   command: "php /app/public/index.php"
   env:
-    - APP_RUNTIME: Baldinof\RoadRunnerBundle\Runtime\Runtime
-
-rpc:
-  listen: tcp://127.0.0.1:6001
+    - APP_RUNTIME: 'Baldinof\RoadRunnerBundle\Runtime\Runtime'
+  relay: pipes
 
 http:
+  access_logs: true
   address: :8080
   pool:
     num_workers: 4
@@ -27,11 +26,11 @@ logs:
   encoding: json
   channels:
     http:
-      level: debug
-    server:
       level: info
+    server:
+      level: warn
     metrics:
-      level: error
+      level: warn
 
 reload:
   interval: 1s
