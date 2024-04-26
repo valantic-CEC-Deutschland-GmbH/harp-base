@@ -2,22 +2,30 @@
 
 {% set bodyClass = 'flex flex-col min-h-screen' %}
 
-{% block title %}PLP{% endblock %}
+{% block title %}PLP
+{% endblock %}
 
 {% block body %}
-	<header>
-		{%  include 'layout/header/header.html.twig' %}
-	</header>
-	<main>
-		{% block main %}
-			<div class="grid grid-cols-4">
-				{% for product in plpData.abstractProducts %}
-					{% include "plp/_product-tile.html.twig" with { product } %}
-				{% endfor %}
-			</div>
-		{% endblock %}
-	</main>
-	<footer>
-		{% include 'layout/footer/footer.html.twig' %}
-	</footer>
+	{% block header %}
+		<header>
+			{%  include 'layout/header/header.html.twig' %}
+		</header>
+	{% endblock %}
+	{% block main %}
+		<main>
+			{% block products_list %}
+				<div class="grid grid-cols-4">
+					{% for product in plpData.abstractProducts %}
+						{% include "plp/_product-tile.html.twig" with { product } %}
+					{% endfor %}
+				</div>
+			{% endblock %}
+		</main>
+	{% endblock %}
+	{% block footer %}
+		<footer>
+			{% include 'layout/footer/footer.html.twig' %}
+		</footer>
+	{% endblock %}
+
 {% endblock %}
