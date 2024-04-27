@@ -11,11 +11,11 @@ class NavigationDataProvider implements DataProviderInterface
 {
     /**
      * @param DataProviderConfigurationFactory $factory
-     * @param CacheItemPoolInterface|null $cacheItemPool
+     * @param CacheItemPoolInterface $cacheItemPool
      */
     public function __construct(
         private DataProviderConfigurationFactory $factory,
-        private ?CacheItemPoolInterface          $cacheItemPool
+        private CacheItemPoolInterface          $cacheItemPool
     )
     {
     }
@@ -25,12 +25,10 @@ class NavigationDataProvider implements DataProviderInterface
      */
     public function provide(string|int $id): array
     {
-        if ($this->cacheItemPool !== null) {
-            $cacheItem = $this->cacheItemPool->getItem('navigation' . $id);
+        $cacheItem = $this->cacheItemPool->getItem('navigation' . $id);
 
-            if ($cacheItem->isHit()) {
-                return $cacheItem->get();
-            }
+        if ($cacheItem->isHit()) {
+            return $cacheItem->get();
         }
 
         $navigationProviderConfig = $this->factory->createNavigationDataProviderConfiguration();
@@ -48,22 +46,19 @@ class NavigationDataProvider implements DataProviderInterface
         ]);
 
         $response = $client->get($endpoint . '/' . $id, [RequestOptions::HTTP_ERRORS => false]);
-        if ($response->getStatusCode() !== 200) {
-            return [
+        if ($response->getStatusCode() === 200) {
+            $navigationData = json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
+            $navigationData = $this->extractTopNavigation($navigationData);
+        } else {
+            $navigationData = [
                 'nodes' => []
             ];
         }
 
-        $navigationData = json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
-
-        $navigationData = $this->extractTopNavigation($navigationData);
-
-        if ($this->cacheItemPool !== null) {
-            $this->cacheItemPool->save(
-                $this->cacheItemPool->getItem('navigation' . $id)
-                    ->set($navigationData)
-            );
-        }
+        $this->cacheItemPool->save(
+            $this->cacheItemPool->getItem('navigation' . $id)
+                ->set($navigationData)
+        );
 
         return $navigationData;
     }
