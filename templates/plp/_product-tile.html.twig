@@ -1,8 +1,8 @@
 {% if product %}
 	{% set name = product.abstractName %}
-	{% set price = product.prices[0].DEFAULT %}
-	{% set imgSmall = product.images[0].externalUrlSmall %}
-	{% set imgBig = product.images[0].externalUrlLarge %}
+	{% set price = product.prices[0].DEFAULT|default(0) %}
+	{% set imgSmall = product.images[0].externalUrlSmall|default('') %}
+	{% set imgBig = product.images[0].externalUrlLarge|default('') %}
 	{% set link = '#' %}
 	<div class="p-2 hover:bg-slate-100">
 		<a class="flex" href="{{ link }}">

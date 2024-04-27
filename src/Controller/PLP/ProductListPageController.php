@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\PLP;
 
+use App\Blocks\TemplateBlockFactory;
 use App\DataProvider\DataProviderConfigurationFactory;
 use App\DataProvider\ProductListDataProvider;
 use Htmxfony\Controller\HtmxControllerTrait;
@@ -16,17 +17,21 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class ProductListPageController extends AbstractController
 {
+    private TemplateBlockFactory $templateBlockFactory;
     public function __construct(private ?CacheItemPoolInterface $cacheItemPool = null)
     {
+        $this->templateBlockFactory = new TemplateBlockFactory();
     }
 
     use HtmxControllerTrait;
     #[Route('/category/{categoryId}', name: 'app_plp_index')]
     public function index(int $categoryId, HtmxRequest $request): HtmxResponse
     {
-        $plpData = (new ProductListDataProvider(
-            new DataProviderConfigurationFactory(),
-            $this->cacheItemPool)
+        $plpData = (
+            new ProductListDataProvider(
+                new DataProviderConfigurationFactory(),
+                $this->cacheItemPool
+            )
         )->provide($categoryId);
 
         if ($request->isHtmxRequest()) {
@@ -44,10 +49,7 @@ class ProductListPageController extends AbstractController
                     'plp/index.html.twig',
                     'head'
                 ),
-                new TemplateBlock(
-                    'plp/index.html.twig',
-                    'header'
-                ),
+                $this->templateBlockFactory->createHeaderTemplateBlock($this->cacheItemPool),
                 new TemplateBlock(
                     'plp/index.html.twig',
                     'main',
