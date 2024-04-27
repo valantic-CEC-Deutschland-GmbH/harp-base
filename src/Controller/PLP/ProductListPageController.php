@@ -6,6 +6,7 @@ namespace App\Controller\PLP;
 
 use App\Blocks\TemplateBlockFactory;
 use App\DataProvider\DataProviderConfigurationFactory;
+use App\DataProvider\NavigationDataProvider;
 use App\DataProvider\ProductListDataProvider;
 use Htmxfony\Controller\HtmxControllerTrait;
 use Htmxfony\Request\HtmxRequest;
@@ -13,6 +14,7 @@ use Htmxfony\Response\HtmxResponse;
 use Htmxfony\Template\TemplateBlock;
 use Psr\Cache\CacheItemPoolInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 class ProductListPageController extends AbstractController
@@ -25,7 +27,7 @@ class ProductListPageController extends AbstractController
 
     use HtmxControllerTrait;
     #[Route('/category/{categoryId}', name: 'app_plp_index')]
-    public function index(int $categoryId, HtmxRequest $request): HtmxResponse
+    public function index(int $categoryId, HtmxRequest $request): HtmxResponse| Response
     {
         $plpData = (
             new ProductListDataProvider(
@@ -44,22 +46,14 @@ class ProductListPageController extends AbstractController
                 )
             );
         } else {
-            return $this->htmxRenderBlock(
-                new TemplateBlock(
-                    'plp/index.html.twig',
-                    'head'
-                ),
-                $this->templateBlockFactory->createHeaderTemplateBlock($this->cacheItemPool),
-                new TemplateBlock(
-                    'plp/index.html.twig',
-                    'main',
-                    ['plpData' => $plpData],
-                ),
-                new TemplateBlock(
-                    'plp/index.html.twig',
-                    'footer'
-                ),
-            );
+            $headerData = (new NavigationDataProvider(new DataProviderConfigurationFactory(), $this->cacheItemPool));
+            $plpData = (new ProductListDataProvider(new DataProviderConfigurationFactory(), $this->cacheItemPool));
+
+            $data = [
+                'headerData' => $headerData,
+                'plpData' => $plpData
+            ];
+            return $this->render('plp/index.html.twig',$data);
         }
     }
 }
