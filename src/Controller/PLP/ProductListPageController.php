@@ -48,8 +48,12 @@ class ProductListPageController extends AbstractController
             return $this->htmxRenderBlock(
                 new TemplateBlock(
                     'plp/index.html.twig',
-                    'main',
+                    'main_wrapper',
                     $data,
+                ),
+                new TemplateBlock(
+                    'plp/index.html.twig',
+                    'title_wrapper'
                 )
             );
         } else {

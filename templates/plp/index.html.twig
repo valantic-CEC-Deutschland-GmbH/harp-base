@@ -7,25 +7,28 @@
 
 {% block body %}
 	{%  include 'layout/header/header.html.twig' with { headerData: data.headerData } %}
-	<main class="grow">
-		{% block main %}
-			<div class="flex gap-4">
-				<div class="pl-4 pr-8 border-r-2">
-					{% include "plp/_categories-navigation.html.twig" with { class: 'sticky top-4' } %}
-				</div>
-				<div class="grid grid-cols-4 grow">
-					{% if data.plpData.abstractProducts is empty %}
-						<div>No products found</div>
-					{% else %}
-						{% for product in data.plpData.abstractProducts %}
-							{% include "plp/_product-tile.html.twig" with { product } %}
-						{% endfor %}
-					{% endif %}
 
+	{% block main_wrapper %}
+		<main class="grow" id="main">
+			{% block main %}
+				<div class="flex gap-4">
+					<div class="pl-4 pr-8 border-r-2">
+						{% include "plp/_categories-navigation.html.twig" with { class: 'sticky top-4' } %}
+					</div>
+					<div class="grid grid-cols-4 grow">
+						{% if data.plpData.abstractProducts is empty %}
+							<div>No products found</div>
+						{% else %}
+							{% for product in data.plpData.abstractProducts %}
+								{% include "plp/_product-tile.html.twig" with { product } %}
+							{% endfor %}
+						{% endif %}
+
+					</div>
 				</div>
-			</div>
-		{% endblock %}
-	</main>
+			{% endblock %}
+		</main>
+	{% endblock %}
 	{% include 'layout/footer/footer.html.twig' %}
 
 {% endblock %}
