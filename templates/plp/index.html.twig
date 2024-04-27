@@ -13,7 +13,7 @@
 			{% block main %}
 				<div class="flex gap-4">
 					<div class="pl-4 pr-8 border-r-2">
-						{% include "plp/_categories-navigation.html.twig" with { class: 'sticky top-4' } %}
+						{% include "plp/_categories-navigation.html.twig" with { class: 'sticky top-4', data: { categoryId: data.categoryId|default(null) } } %}
 					</div>
 					<div class="grid grid-cols-4 grow">
 						{% if data.plpData.abstractProducts is empty %}

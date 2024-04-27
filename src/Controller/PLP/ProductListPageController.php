@@ -41,7 +41,8 @@ class ProductListPageController extends AbstractController
             $data = [
                 'data' =>
                     [
-                        'plpData' => $plpData
+                        'plpData' => $plpData,
+                        'categoryId' => $categoryId
                     ]
             ];
             // do partial rendering
@@ -64,7 +65,8 @@ class ProductListPageController extends AbstractController
                 'data' =>
                     [
                         'headerData' => $headerData,
-                        'plpData' => $plpData
+                        'plpData' => $plpData,
+                        'categoryId' => $categoryId
                     ]
             ];
             return $this->render('plp/index.html.twig', $data);
