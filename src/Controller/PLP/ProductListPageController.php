@@ -50,8 +50,11 @@ class ProductListPageController extends AbstractController
             $plpData = (new ProductListDataProvider(new DataProviderConfigurationFactory(), $this->cacheItemPool));
 
             $data = [
-                'headerData' => $headerData,
-                'plpData' => $plpData
+                'data' =>
+                [
+                    'headerData' => $headerData,
+                    'plpData' => $plpData
+                ]
             ];
             return $this->render('plp/index.html.twig',$data);
         }
