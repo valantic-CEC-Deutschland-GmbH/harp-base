@@ -9,7 +9,13 @@
 	{%  include 'layout/header/header.html.twig' with { headerData: data.headerData } %}
 	<main class='grow'>
 		{% block main %}
-			wellcome
+			<div class="grid place-content-center gap-4">
+				<img class="object-contain h-80" src="img/home.png" alt="thing"/>
+
+				<div class="h-40 bg-slate-100 rounded-2 border-2 border-slate-200 text-slate-400">Place your ad here</div>
+
+
+			</div>
 		{% endblock %}
 	</main>
 	{% include 'layout/footer/footer.html.twig' %}

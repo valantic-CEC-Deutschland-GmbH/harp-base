@@ -10,7 +10,7 @@
 							<a class="p-4 hover:bg-slate-400/50" href="#">{{ node.title }}</a>
 						{% endif %}
 
-						<ul class="absolute left-0 w-full top-full flex flex-col gap-2 -mt-5 p-4 bg-slate-300 invisible opacity-0 transition group-hover:visible group-hover:opacity-100">
+						<ul class="absolute z-10 left-0 w-full top-full flex flex-col gap-2 -mt-5 p-4 bg-slate-300 invisible opacity-0 transition group-hover:visible group-hover:opacity-100">
 							{% for child in node.children %}
 								{% if child.nodeType == 'category' and child.resourceId is defined %}
 									<li>
