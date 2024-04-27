@@ -8,5 +8,5 @@ interface DataTransformerInterface
 {
     public function transformInputParameters(array $params): array;
 
-    public function transformResponse(string $response): string;
+    public function transformResponse(array $response): string;
 }

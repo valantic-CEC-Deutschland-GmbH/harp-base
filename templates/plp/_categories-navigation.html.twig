@@ -1,0 +1,139 @@
+{% set categories = {
+  "categoryNodesStorage": [
+    {
+      "nodeId": 5,
+      "order": 100,
+      "name": "Computer",
+      "url": "/en/computer",
+      "children": [
+        {
+          "nodeId": 6,
+          "order": 100,
+          "name": "Notebooks",
+          "url": "/en/computer/notebooks",
+          "children": []
+        },
+        {
+          "nodeId": 7,
+          "order": 90,
+          "name": "Pc's/Workstations",
+          "url": "/en/computer/pc's/workstations",
+          "children": []
+        },
+        {
+          "nodeId": 8,
+          "order": 80,
+          "name": "Tablets",
+          "url": "/en/computer/tablets",
+          "children": []
+        }
+      ]
+    },
+    {
+      "nodeId": 2,
+      "order": 90,
+      "name": "Cameras & Camcorders",
+      "url": "/en/cameras-&-camcorders",
+      "children": [
+        {
+          "nodeId": 4,
+          "order": 100,
+          "name": "Digital Cameras",
+          "url": "/en/cameras-&-camcorders/digital-cameras",
+          "children": []
+        },
+        {
+          "nodeId": 3,
+          "order": 90,
+          "name": "Camcorders",
+          "url": "/en/cameras-&-camcorders/camcorders",
+          "children": []
+        }
+      ]
+    },
+    {
+      "nodeId": 15,
+      "order": 80,
+      "name": "Cables",
+      "url": "/en/cables",
+      "children": []
+    },
+    {
+      "nodeId": 16,
+      "order": 80,
+      "name": "Food",
+      "url": "/en/food",
+      "children": [
+        {
+          "nodeId": 18,
+          "order": 50,
+          "name": "Fish",
+          "url": "/en/food/fish",
+          "children": []
+        },
+        {
+          "nodeId": 19,
+          "order": 50,
+          "name": "Vegetables",
+          "url": "/en/food/vegetables",
+          "children": []
+        }
+      ]
+    },
+    {
+      "nodeId": 11,
+      "order": 80,
+      "name": "Telecom & Navigation",
+      "url": "/en/telecom-&-navigation",
+      "children": [
+        {
+          "nodeId": 12,
+          "order": 80,
+          "name": "Smartphones",
+          "url": "/en/telecom-&-navigation/smartphones",
+          "children": []
+        }
+      ]
+    },
+    {
+      "nodeId": 9,
+      "order": 70,
+      "name": "Smart Wearables",
+      "url": "/en/smart-wearables",
+      "children": [
+        {
+          "nodeId": 10,
+          "order": 70,
+          "name": "Smartwatches",
+          "url": "/en/smart-wearables/smartwatches",
+          "children": []
+        }
+      ]
+    }
+  ]
+}
+ %}
+
+{% if categories.categoryNodesStorage is defined %}
+	<nav {% if class is defined %}class="{{ class }}"{% endif %} >
+		<ul>
+			{% for category in categories.categoryNodesStorage %}
+				<li>
+					<a hx-get="/category/{{ category.nodeId }}" hx-push-url="true" hx-target="main" class="hover:text-orange-700 p-2" href="/category/{{ category.nodeId }}">{{ category.name }}</a>
+					{% if category.children is not empty %}
+						<ul class="pl-4">
+							{% for child in category.children %}
+								<li>
+									<a hx-get="/category/{{ child.nodeId }}" hx-push-url="true" hx-target="main" class="hover:text-orange-700 p-2" href="/category/{{ child.nodeId }}">{{ child.name }}</a>
+								</li>
+							{% endfor %}
+						</ul>
+
+					{% endif %}
+				</li>
+			{% endfor %}
+
+		</ul>
+	</nav>
+
+{% endif %}
