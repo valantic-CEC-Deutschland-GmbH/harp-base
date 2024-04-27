@@ -27,22 +27,29 @@ class ProductListPageController extends AbstractController
 
     use HtmxControllerTrait;
     #[Route('/category/{categoryId}', name: 'app_plp_index')]
-    public function index(int $categoryId, HtmxRequest $request): HtmxResponse| Response
+    public function index(int $categoryId, HtmxRequest $request): HtmxResponse|Response
     {
-        $plpData = (
-            new ProductListDataProvider(
-                new DataProviderConfigurationFactory(),
-                $this->cacheItemPool
-            )
-        )->provide($categoryId);
+
 
         if ($request->isHtmxRequest()) {
+            $plpData = (
+                new ProductListDataProvider(
+                    new DataProviderConfigurationFactory(),
+                    $this->cacheItemPool
+                )
+            )->provide($categoryId);
+            $data = [
+                'data' =>
+                    [
+                        'plpData' => $plpData
+                    ]
+            ];
             // do partial rendering
             return $this->htmxRenderBlock(
                 new TemplateBlock(
                     'plp/index.html.twig',
-                    'products_list',
-                    ['plpData' => $plpData],
+                    'main',
+                    $data,
                 )
             );
         } else {
@@ -51,12 +58,12 @@ class ProductListPageController extends AbstractController
 
             $data = [
                 'data' =>
-                [
-                    'headerData' => $headerData,
-                    'plpData' => $plpData
-                ]
+                    [
+                        'headerData' => $headerData,
+                        'plpData' => $plpData
+                    ]
             ];
-            return $this->render('plp/index.html.twig',$data);
+            return $this->render('plp/index.html.twig', $data);
         }
     }
 }

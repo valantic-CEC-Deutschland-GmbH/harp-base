@@ -1,11 +1,8 @@
-{% block header %}
-	<header class="relative py-4 bg-slate-300 mb-8 ">
-		<div class="grid grid-cols-[1fr,auto,1fr] items-center">
-			{% if headerData is defined %}
-				{% include "layout/header/_navigation.html.twig" with { nodes: headerData.nodes } %}
-			{% endif %}
-			<a class="font-bold p-4 mx-auto" hx-boost="true" href="/">LOGO</a>
-		</div>
-	</header>
-
-{% endblock %}
+<header class="relative py-4 bg-slate-300 mb-8 ">
+	<div class="grid grid-cols-[1fr,auto,1fr] items-center">
+		{% if headerData is defined %}
+			{% include "layout/header/_navigation.html.twig" with { nodes: headerData.nodes } %}
+		{% endif %}
+		<a class="font-bold p-4 mx-auto" hx-boost="true" href="/">LOGO</a>
+	</div>
+</header>

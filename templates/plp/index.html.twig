@@ -6,26 +6,16 @@
 {% endblock %}
 
 {% block body %}
-	{% block header %}
-		<header>
-			{%  include 'layout/header/header.html.twig' with { data.headerData } %}
-		</header>
-	{% endblock %}
-	{% block main %}
-		<main>
-			{% block products_list %}
-				<div class="grid grid-cols-4">
-					{% for product in data.plpData.abstractProducts %}
-						{% include "plp/_product-tile.html.twig" with { product } %}
-					{% endfor %}
-				</div>
-			{% endblock %}
-		</main>
-	{% endblock %}
-	{% block footer %}
-		<footer>
-			{% include 'layout/footer/footer.html.twig' %}
-		</footer>
-	{% endblock %}
+	{%  include 'layout/header/header.html.twig' with { headerData: data.headerData } %}
+	<main>
+		{% block main %}
+			<div class="grid grid-cols-4">
+				{% for product in data.plpData.abstractProducts %}
+					{% include "plp/_product-tile.html.twig" with { product } %}
+				{% endfor %}
+			</div>
+		{% endblock %}
+	</main>
+	{% include 'layout/footer/footer.html.twig' %}
 
 {% endblock %}

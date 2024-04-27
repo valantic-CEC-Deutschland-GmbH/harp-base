@@ -8,11 +8,12 @@ use App\Blocks\TemplateBlockFactory;
 use Htmxfony\Controller\HtmxControllerTrait;
 use Htmxfony\Response\HtmxResponse;
 use Htmxfony\Request\HtmxRequest;
-use Htmxfony\Template\TemplateBlock;
 use Psr\Cache\CacheItemPoolInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Attribute\Route;
+use App\DataProvider\NavigationDataProvider;
+use App\DataProvider\DataProviderConfigurationFactory;
 
 class IndexController extends AbstractController
 {
@@ -26,24 +27,17 @@ class IndexController extends AbstractController
     #[Route('/', name: 'app_home_index')]
     public function index(HtmxRequest $request): HtmxResponse|Response
     {
-        $path = __DIR__ . '/../../../example-data/navigation/navigation.json';
 
-        $navigationData = file_get_contents($path);
 
-        return $this->htmxRenderBlock(
-            new TemplateBlock(
-                'home/index.html.twig',
-                'head'
-            ),
-            $this->templateBlockFactory->createHeaderTemplateBlock($this->cacheItemPool),
-            new TemplateBlock(
-                'home/index.html.twig',
-                'main'
-            ),
-            new TemplateBlock(
-                'home/index.html.twig',
-                'footer'
-            ),
-        );
+        $headerData = (new NavigationDataProvider(new DataProviderConfigurationFactory(), $this->cacheItemPool))->provide('MAIN_NAVIGATION');
+
+        $data = [
+            'data' =>
+                [
+                    'headerData' => $headerData,
+                ]
+        ];
+        return $this->render('home/index.html.twig', $data);
+
     }
 }
