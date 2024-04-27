@@ -7,8 +7,8 @@
 
 {% block body %}
 	{%  include 'layout/header/header.html.twig' with { headerData: data.headerData } %}
-	<main id="main" class='grow'>
-		{% block main %}
+	{% block main_wrapper %}
+		<main id="main" class='grow'>
 			<div class="grid place-content-center gap-4">
 				<img class="object-contain h-80" src="img/home.png" alt="thing"/>
 
@@ -16,7 +16,7 @@
 
 
 			</div>
-		{% endblock %}
-	</main>
+		</main>
+	{% endblock %}
 	{% include 'layout/footer/footer.html.twig' %}
 {% endblock %}

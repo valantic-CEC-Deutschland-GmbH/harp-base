@@ -3,6 +3,6 @@
 		{% if headerData is defined %}
 			{% include "layout/header/_navigation.html.twig" with { nodes: headerData.nodes } %}
 		{% endif %}
-		<a class="font-bold p-4 mx-auto" hx-boost="true" href="/">LOGO</a>
+		<a class="font-bold p-4 mx-auto" hx-get="/" hx-push-url="true" hx-swap="multi:#main,#head-title outerHTML" href="/">LOGO</a>
 	</div>
 </header>
