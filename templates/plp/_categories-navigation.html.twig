@@ -121,12 +121,12 @@
 		<ul>
 			{% for category in categories.categoryNodesStorage %}
 				<li>
-					<a hx-get="/category/{{ category.nodeId }}" hx-push-url="true" hx-swap="multi:#main,#head-title outerHTML" class="{% if activeCategoryId == category.nodeId %}text-orange-500 font-bold {% endif %}hover:text-orange-700 p-2" href="/category/{{ category.nodeId }}">{{ category.name }}</a>
+					<a hx-get="/category/{{ category.nodeId }}" hx-push-url="true" hx-swap="multi:#main,#head-title" class="{% if activeCategoryId == category.nodeId %}text-orange-500 font-bold {% endif %}hover:text-orange-700 p-2" href="/category/{{ category.nodeId }}">{{ category.name }}</a>
 					{% if category.children is not empty %}
 						<ul class="pl-4">
 							{% for child in category.children %}
 								<li>
-									<a hx-get="/category/{{ child.nodeId }}" hx-push-url="true" hx-swap="multi:#main,#head-title outerHTML" class="{% if activeCategoryId == child.nodeId %}text-orange-500 font-bold {% endif %}hover:text-orange-700 p-2" href="/category/{{ child.nodeId }}">{{ child.name }}</a>
+									<a hx-get="/category/{{ child.nodeId }}" hx-push-url="true" hx-swap="multi:#main,#head-title" class="{% if activeCategoryId == child.nodeId %}text-orange-500 font-bold {% endif %}hover:text-orange-700 p-2" href="/category/{{ child.nodeId }}">{{ child.name }}</a>
 								</li>
 							{% endfor %}
 						</ul>
