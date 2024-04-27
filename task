@@ -2,12 +2,12 @@
 
 # start containers
 function up {
-  docker-compose up -d $@
+  docker compose up -d $@
 }
 
 # stop containers
 function down {
-  docker-compose down
+  docker compose down
 }
 
 # initialize application
@@ -18,10 +18,10 @@ function init {
   cp -n .env.example .env
 
   echo "Build docker images..."
-  docker-compose build
+  docker compose build
 
   echo "Install PHP dependencies..."
-  docker-compose run roadrunner sh -c 'composer install'
+  docker compose run roadrunner sh -c 'composer install'
 
   echo "Initialization completed!"
 }
@@ -31,17 +31,17 @@ function login {
   container=${1:-roadrunner}
 
   echo "Attempt to login ${container} container..."
-  docker-compose exec ${container} bash
+  docker compose exec ${container} bash
 }
 
 # show container logs
 function logs {
-  docker-compose logs $1
+  docker compose logs $1
 }
 
 # execute RoadRunner command
 function rr {
-  docker-compose exec roadrunner rr -c /etc/rr.yaml $1
+  docker compose exec roadrunner rr -c /etc/rr.yaml $1
 }
 
 subcommand=$1

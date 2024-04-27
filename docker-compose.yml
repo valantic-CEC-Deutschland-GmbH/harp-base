@@ -1,6 +1,6 @@
 services:
   redis:
-    image: 'redis:${REDIS_VERSION}'
+    image: 'redis:${REDIS_VERSION}-alpine'
     ports:
       - '6379:6379/tcp'
     restart: unless-stopped
@@ -12,14 +12,13 @@ services:
         PHP_IMAGE_VERSION: ${PHP_IMAGE_VERSION}
         RR_VERSION: ${RR_VERSION}
       context: ./containers/roadrunner
-      # target: production
-      target: development
+      target: '${DOCKER_TARGET}'
     environment:
       RR_VERSION: ${RR_VERSION}
     extra_hosts:
       - 'host.docker.internal:host-gateway'
     ports:
-      - '8080:8080/tcp'
+      - '${DOCKER_HOST_PORT}:8080/tcp'
     restart: unless-stopped
     working_dir: /app
     volumes:

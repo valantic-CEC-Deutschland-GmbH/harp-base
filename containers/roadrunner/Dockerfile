@@ -19,7 +19,8 @@ RUN \
   && docker-php-ext-install sockets \
   && docker-php-ext-install zip
 
-COPY --from=rr /usr/bin/rr /usr/bin/rr
+COPY --from=rr         /usr/bin/rr             /usr/bin/rr
+COPY --from=composer:2 /usr/bin/composer       /usr/bin/composer
 
 # Install Symfony CLI.
 # See https://symfony.com/download.
@@ -34,7 +35,6 @@ RUN \
   pecl install xdebug \
   && docker-php-ext-enable xdebug
 
-COPY --from=composer:2 /usr/bin/composer             /usr/bin/composer
 COPY config/usr/local/etc/php/conf.d/99-valantic.ini /usr/local/etc/php/conf.d/99-valantic.ini
 COPY config/.rr.dev.yaml                             /etc/rr.yaml
 
