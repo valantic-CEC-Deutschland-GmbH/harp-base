@@ -46,8 +46,8 @@ class ProductListPageController extends AbstractController
                 )
             );
         } else {
-            $headerData = (new NavigationDataProvider(new DataProviderConfigurationFactory(), $this->cacheItemPool));
-            $plpData = (new ProductListDataProvider(new DataProviderConfigurationFactory(), $this->cacheItemPool));
+            $headerData = (new NavigationDataProvider(new DataProviderConfigurationFactory(), $this->cacheItemPool))->provide('MAIN_NAVIGATION');
+            $plpData = (new ProductListDataProvider(new DataProviderConfigurationFactory(), $this->cacheItemPool))->provide($categoryId);
 
             $data = [
                 'data' =>
