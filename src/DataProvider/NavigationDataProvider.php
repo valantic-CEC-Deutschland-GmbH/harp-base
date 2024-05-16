@@ -1,5 +1,6 @@
 <?php
-declare(strict_types=1);
+
+declare(strict_types = 1);
 
 namespace App\DataProvider;
 
@@ -10,14 +11,13 @@ use Psr\Cache\CacheItemPoolInterface;
 class NavigationDataProvider implements DataProviderInterface
 {
     /**
-     * @param DataProviderConfigurationFactory $factory
-     * @param CacheItemPoolInterface $cacheItemPool
+     * @param \App\DataProvider\DataProviderConfigurationFactory $factory
+     * @param \Psr\Cache\CacheItemPoolInterface|null $cacheItemPool
      */
     public function __construct(
         private DataProviderConfigurationFactory $factory,
         private CacheItemPoolInterface          $cacheItemPool
-    )
-    {
+    ) {
     }
 
     /**
@@ -25,30 +25,40 @@ class NavigationDataProvider implements DataProviderInterface
      */
     public function provide(string|int $id): array
     {
-        $cacheItem = $this->cacheItemPool->getItem('navigation' . $id);
-
-        if ($cacheItem->isHit()) {
-            return $cacheItem->get();
-        }
-
         $navigationProviderConfig = $this->factory->createNavigationDataProviderConfiguration();
-
         $endpoint = $navigationProviderConfig->getEndpoint();
+        $initialEndPoint = $endpoint;
+//        $cacheItem = $this->cacheItemPool->getItem(hash('sha256', $initialEndPoint) . 'navigation' . $id);
+//
+//        if ($cacheItem->isHit()) {
+//            return $cacheItem->get();
+//        }
+        $dataTransformer = $navigationProviderConfig->getDataTransformer();
+        $inputParameters = $dataTransformer->transformInputParameters(['navigationId' => $id]);
+
+        $pathParameters = $inputParameters['pathParameters'] ?? [];
+        foreach ($pathParameters as $value) {
+            $endpoint .= '/' . $value;
+        }
+        $queryParameters = $inputParameters['queryParameters'] ?? [];
+
+        $headers = $inputParameters['headers'] ?? [];
 
         $client = new Client([
-            'headers' => [
-                'Accept-Language' => 'en-us',
-                'Accept' => 'application/json',
-                'Accept-Encoding' => 'gzip, deflate, br',
-                'Connection' => 'keep-alive',
-                'Cache-Control' => 'no-cache',
-            ],
+            'headers' => $headers,
         ]);
+        if ($inputParameters['verb'] === 'POST') {
 
-        $response = $client->get($endpoint . '/' . $id, [RequestOptions::HTTP_ERRORS => false]);
+            $response = $client->post($endpoint, [
+                RequestOptions::JSON => json_encode($inputParameters['body']),
+                RequestOptions::HTTP_ERRORS => false,
+            ]);
+        } else {
+            $response = $client->get($endpoint, [RequestOptions::HTTP_ERRORS => false]);
+        }
         if ($response->getStatusCode() === 200) {
             $navigationData = json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
-            $navigationData = $this->extractTopNavigation($navigationData);
+            $navigationData = $dataTransformer->transformResponse($navigationData);
         } else {
             $navigationData = [
                 'nodes' => []
@@ -56,7 +66,7 @@ class NavigationDataProvider implements DataProviderInterface
         }
 
         $this->cacheItemPool->save(
-            $this->cacheItemPool->getItem('navigation' . $id)
+            $this->cacheItemPool->getItem(hash('sha256', $initialEndPoint) . 'navigation' . $id)
                 ->set($navigationData)
         );
 
@@ -65,6 +75,7 @@ class NavigationDataProvider implements DataProviderInterface
 
     /**
      * @param mixed $navigationData
+     *
      * @return array
      */
     private function extractTopNavigation(mixed $navigationData): array

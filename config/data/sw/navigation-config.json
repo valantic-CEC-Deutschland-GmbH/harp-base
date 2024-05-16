@@ -1,0 +1,40 @@
+{
+  "endPoint": "https://team3-sw.vcec.cloud/store-api/navigation",
+  "inputParametersMap": {
+    "pathParameters": {
+      "navigationId": "@018ec383a450736c89ccb1025c120623",
+      "navigationId2": "@018ec383a450736c89ccb1025c120623"
+    },
+    "queryParameters": {
+      "navigationId": "@main-navigation"
+    },
+    "headers": {
+      "Content-Type": "@application/json",
+      "Accept": "@application/json",
+      "sw-access-key": "@SWSCBEZZNFPTMXZFODZKTUHVZA",
+      "Accept-Encoding": "@gzip, deflate, br",
+      "Connection": "@keep-alive",
+      "Cache-Control": "@no-cache",
+      "Accept-Language": "@en-US,en;q=0.9"
+    },
+    "body": {
+      "depth": 100,
+      "buildTree": true
+    }
+  },
+  "responseMap": {
+    "addRootNode": true,
+    "root": "@shopware",
+    "isArray": true,
+    "name": "name",
+    "title": "name",
+    "isActive": "active",
+    "nodeType": "@category",
+    "resourceId": "id",
+    "url": "url",
+    "children": {
+      "isRecursive": true,
+      "key": "children"
+    }
+  }
+}

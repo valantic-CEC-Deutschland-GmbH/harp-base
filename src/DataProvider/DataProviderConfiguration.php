@@ -6,6 +6,7 @@ namespace App\DataProvider;
 
 
 use App\DataTransformer\DataTransformerInterface;
+use App\DataTransformer\GenericTransformer;
 
 class DataProviderConfiguration
 {
@@ -44,6 +45,9 @@ class DataProviderConfiguration
      */
     public function getDataTransformer(): DataTransformerInterface
     {
-        return new $this->config['dataTransformer']();
+        return new GenericTransformer(
+            $this->config['inputParametersMap'] ?? null,
+            $this->config['responseMap'] ?? null
+        );
     }
 }

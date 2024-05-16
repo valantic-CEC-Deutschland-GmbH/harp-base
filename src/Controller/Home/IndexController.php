@@ -28,7 +28,6 @@ class IndexController extends AbstractController
     #[Route('/', name: 'app_home_index')]
     public function index(HtmxRequest $request): HtmxResponse|Response
     {
-
         if ($request->isHtmxRequest()) {
             // do partial rendering
             return $this->htmxRenderBlock(

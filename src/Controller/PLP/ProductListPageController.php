@@ -19,6 +19,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class ProductListPageController extends AbstractController
 {
+    const string MAIN_NAVIGATION = 'MAIN_NAVIGATION';
     private TemplateBlockFactory $templateBlockFactory;
     public function __construct(private ?CacheItemPoolInterface $cacheItemPool = null)
     {
@@ -58,7 +59,7 @@ class ProductListPageController extends AbstractController
                 )
             );
         } else {
-            $headerData = (new NavigationDataProvider(new DataProviderConfigurationFactory(), $this->cacheItemPool))->provide('MAIN_NAVIGATION');
+            $headerData = (new NavigationDataProvider(new DataProviderConfigurationFactory(), $this->cacheItemPool))->provide(self::MAIN_NAVIGATION);
             $plpData = (new ProductListDataProvider(new DataProviderConfigurationFactory(), $this->cacheItemPool))->provide($categoryId);
 
             $data = [
