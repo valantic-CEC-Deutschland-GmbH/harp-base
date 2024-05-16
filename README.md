@@ -16,7 +16,7 @@ HTTP Server and PHP Workers are enabled by default.
 
 ### via Git
 ```
-git clone https://github.com/n1215/roadrunner-docker-skeleton.git your_app
+git clone [https://github.com/valantic-CEC-Deutschland-GmbH/harp-base](https://github.com/valantic-CEC-Deutschland-GmbH/harp-base.git) your_app
 cd your_app
 
 ./task init
@@ -24,7 +24,7 @@ cd your_app
 
 ### via Composer
 ```
-composer create-project --prefer-dist n1215/roadrunner-docker-skeleton your_app
+composer create-project --prefer-dist valantic-CEC-Deutschland-GmbH/harp-base your_app
 cd your_app
 
 ./task init
