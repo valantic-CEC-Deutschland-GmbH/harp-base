@@ -1,6 +1,6 @@
 # valantic-CEC-Deutschland-GmbH/harp-base
 A local docker environment skeleton for [RoadRunner](https://github.com/roadrunner-server/roadrunner), the PHP application server written in golang.
-
+Based on https://poser.pugx.org/n1215/roadrunner-docker-skeleton/v/stable
 HTTP Server and PHP Workers are enabled by default.
 
 [![Latest Stable Version](https://poser.pugx.org/n1215/roadrunner-docker-skeleton/v/stable)](https://packagist.org/packages/n1215/roadrunner-docker-skeleton)
